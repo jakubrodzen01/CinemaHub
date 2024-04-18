@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/css/profileStyle.css">
+</head>
+
+<body>
+    <header>
+        <a id="profileLogo" href="/profile"><img src="/img/profileIcon.svg" alt="Profile"></a>
+    </header>
+
+    <div id="mainContainer">
+        <nav id="leftNav">
+            <ul>
+                <li><a href="dashboard">Dashboard</a></li>
+                <li><a href="schedule">Schedule</a></li>
+                <li><a href="adverts">Adverts</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <ul id="profileInfo">
+                <li id="photo"><img id="photoLogo" src="/img/profileIconBlack.svg" alt="Profile"></li>
+                <li id="username" class="info"><a>Username</a></li>
+                <li id="rank" class="info"><a>Rank</a></li>
+            </ul>
+            <a id="aLogoutButton" href="login"><button id="logoutButton">Logout</button></a>
+        </main>
+    </div>
+</body>
+</html>

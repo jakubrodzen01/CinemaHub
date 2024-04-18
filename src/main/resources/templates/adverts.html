@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/css/advertsStyle.css">
+</head>
+
+<body>
+    <header>
+        <a id="profileLogo" href="/profile"><img src="/img/profileIcon.svg" alt="Profile"></a>
+    </header>
+
+    <div id="mainContainer">
+        <nav id="leftNav">
+            <ul>
+                <li><a href="dashboard">Dashboard</a></li>
+                <li><a href="schedule">Schedule</a></li>
+                <li><a href="adverts">Adverts</a></li>
+            </ul>
+        </nav>
+        <main>
+            <ul id="latestAdverts">
+                <li id="latestAdvertsTitle"><p>Latest adverts:</p></li>
+                <li><img src="/img/line.svg"></li>
+                <li class="advertInfo">
+                    <div class="info">
+                        Topic
+                        Date
+                    </div>
+                </li>
+            </ul>
+        </main>
+    </div>
+</body>
+</html>

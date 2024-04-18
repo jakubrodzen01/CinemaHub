@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="/css/dashboardStyle.css">
+</head>
+
+
+
+<body>
+    <header>
+        <a id="profileLogo" href="/profile"><img src="/img/profileIcon.svg" alt="Profile"></a>
+    </header>
+    <div id="mainContainer">
+        <nav id="leftNav">
+            <ul>
+                <li><a href="dashboard">Dashboard</a></li>
+                <li><a href="schedule">Schedule</a></li>
+                <li><a href="adverts">Adverts</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <div id="premieres" class="dashboardDiv">
+                <div id="upcomingPremieres">
+                    <span>Upcoming premieres</span>
+                    <span>22 March 2024</span>
+                </div>
+                <div class="premiereMovie">
+                    <img class="moviePoster" src="/img/moviePoster.jpg">
+                    <span class="movieName">Cars</span>
+                </div>
+                <div class="premiereMovie">
+                    <img class="moviePoster" src="/img/moviePoster.jpg">
+                    <span class="movieName">Cars</span>
+                </div>
+                <div class="premiereMovie">
+                    <img class="moviePoster" src="/img/moviePoster.jpg">
+                    <span class="movieName">Cars</span>
+                </div>
+            </div>
+
+            <div id="weather" class="dashboardDiv">
+                <img id="weatherImg" src="/img/weatherImg.png">
+                <span>Sunny</span>
+                <span>20°C</span>
+            </div>
+
+            <div id="date" class="dashboardDiv">
+                <span id="hour">10:45</span>
+                <span>18 March</span>
+                <span id="day">Monday</span>
+            </div>
+
+            <div id="nextShift" class="dashboardDiv">
+                <span id="nextShiftSpan">Your next shift</span>
+                <span id="nextShiftDate">20 March Wednesday</span>
+                <span id="nextShiftHours">15:00 - 21:00</span>
+            </div> 
+        </main>
+    </div>
+</body>
+</html>
