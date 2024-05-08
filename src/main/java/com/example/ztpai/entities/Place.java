@@ -1,4 +1,4 @@
-package com.example.ztpai.entitie;
+package com.example.ztpai.entities;
 
 public enum Place {
     SERVICE,

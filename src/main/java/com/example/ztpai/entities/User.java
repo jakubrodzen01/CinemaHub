@@ -1,4 +1,4 @@
-package com.example.ztpai.entitie;
+package com.example.ztpai.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,8 +9,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,4 +35,11 @@ public class User{
     private String password;
     @Enumerated(value = EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Advert> adverts;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Availability> availabilities;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Shift> shifts;
 }

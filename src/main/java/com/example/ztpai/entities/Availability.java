@@ -1,4 +1,4 @@
-package com.example.ztpai.entitie;
+package com.example.ztpai.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,18 +16,28 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "adverts")
-public class Advert {
+public class Availability {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name="UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @JdbcTypeCode(SqlTypes.CHAR)
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
-    private UUID id_advert;
-    @Column(name = "id_sender")
-    private UUID id_sender;
-    @Column(name = "send_date")
-    private String send_time;
-    @Column(name = "text")
-    private String text;
+    private UUID id_availability;
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
+    @Column(name = "friday")
+    private String friday;
+    @Column(name = "saturday")
+    private String saturday;
+    @Column(name = "sunday")
+    private String sunday;
+    @Column(name = "monday")
+    private String monday;
+    @Column(name = "tuesday")
+    private String tuesday;
+    @Column(name = "wednesday")
+    private String wednesday;
+    @Column(name = "thursday")
+    private String thursday;
 }
