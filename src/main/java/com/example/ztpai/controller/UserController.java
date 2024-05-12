@@ -19,7 +19,12 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/getById/{uuid}")
-    public User getById(@PathVariable("uuid") UUID uuid) {
+    public User getById(@PathVariable("uuid") UUID uuid, HttpServletResponse response) throws IOException {
+        if(userService.existsById(uuid) == false) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "User not found!");
+            return null;
+        }
+
         return userService.getById(uuid);
     }
 

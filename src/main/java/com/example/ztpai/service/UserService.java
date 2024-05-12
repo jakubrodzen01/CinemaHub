@@ -12,6 +12,10 @@ import java.util.*;
 public class UserService {
     private final UserRepository userRepository;
 
+    public boolean existsById(UUID uuid) {
+        return userRepository.existsById(uuid);
+    }
+
     public List<User> getAll() {
         return userRepository.findAll();
     }
