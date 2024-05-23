@@ -49,7 +49,8 @@ public class ConfigSecurity {
         http.csrf().disable()
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/hello", "/new", "/authenticate").permitAll()
+                                .requestMatchers("/api/v1/user/authenticate").permitAll()
+                                .requestMatchers("/api/v1/user/**").hasAuthority("MANAGER")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->

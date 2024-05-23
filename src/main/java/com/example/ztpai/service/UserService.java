@@ -19,14 +19,6 @@ public class UserService {
         return userRepository.existsById(uuid);
     }
 
-    public List<User> getAll() {
-        return userRepository.findAll();
-    }
-
-    public User getById(UUID uuid) {
-        return userRepository.findById(uuid).orElse(null);
-    }
-
     public void addUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
@@ -34,5 +26,12 @@ public class UserService {
 
     public void deleteById(UUID uuid) {
         userRepository.deleteById(uuid);
+    }
+    public List<User> getAll() {
+        return userRepository.findAll();
+    }
+
+    public User getById(UUID uuid) {
+        return userRepository.findById(uuid).orElse(null);
     }
 }

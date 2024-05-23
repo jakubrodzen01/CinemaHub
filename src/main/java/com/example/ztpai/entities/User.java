@@ -1,5 +1,6 @@
 package com.example.ztpai.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -28,21 +29,31 @@ public class User implements UserDetails {
     @JdbcTypeCode(SqlTypes.CHAR)
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
     private UUID id_user;
-    @Column(name = "first_name")
+
+    @Column(name = "first_name", nullable = false)
     private String first_name;
-    @Column(name = "last_name")
+
+    @Column(name = "last_name", nullable = false)
     private String last_name;
-    @Column(name = "username", unique = true)
+
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
-    @Column(name = "password")
+
+    @Column(name = "password", nullable = false)
     private String password;
+
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Advert> adverts;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Availability> availabilities;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Shift> shifts;
 
