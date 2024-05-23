@@ -42,6 +42,14 @@ public class UserController {
         return userService.getAll();
     }
 
+    @GetMapping("/getMe")
+    @PreAuthorize("hasAuthority('MANAGER') || hasAuthority('EMPLOYEE')")
+    public User getMe(@RequestHeader("Authorization") String authHeader) {
+        String token = authHeader.substring(7);
+        UUID id_user = jwtService.getUserIdFromToken(token);
+        return userService.getById(id_user);
+    }
+
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('MANAGER')")
     public void addUser(@RequestBody User user, HttpServletResponse response) throws IOException {

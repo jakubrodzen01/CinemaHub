@@ -7,6 +7,7 @@ import com.example.ztpai.service.AdvertService;
 import com.example.ztpai.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -23,11 +24,13 @@ public class AdvertController {
     private final UserService userService;
 
     @GetMapping("/getAll")
+    @PreAuthorize("hasAuthority('MANAGER') || hasAuthority('EMPLOYEE')")
     public List<Advert> getAll() {
         return advertService.getAll();
     }
 
     @GetMapping("/getById/{uuid}")
+    @PreAuthorize("hasAuthority('MANAGER') || hasAuthority('EMPLOYEE')")
     public Advert getById(@PathVariable("uuid") UUID uuid, HttpServletResponse response) throws IOException {
         if(advertService.existsById(uuid) == false) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Advert not found!");
@@ -38,6 +41,7 @@ public class AdvertController {
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasAuthority('MANAGER'")
     public void addAdvert(@RequestBody Advert advert, @RequestHeader("Authorization") String authHeader, HttpServletResponse response) throws IOException {
         if(advert.getTitle() != null && advert.getText() != null) {
             String token = authHeader.substring(7);
@@ -54,6 +58,7 @@ public class AdvertController {
     }
 
     @DeleteMapping("/delete/{uuid}")
+    @PreAuthorize("hasAuthority('MANAGER'")
     public void deleteById(@PathVariable("uuid") UUID uuid, HttpServletResponse response) throws IOException {
         if(advertService.getById(uuid) != null) {
             advertService.deleteById(uuid);
