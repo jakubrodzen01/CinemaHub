@@ -50,7 +50,8 @@ public class ConfigSecurity {
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/api/v1/user/authenticate").permitAll()
-                                .requestMatchers("/api/v1/user/**").hasAuthority("MANAGER")
+                                //.requestMatchers("/api/v1/shift/add").permitAll()
+                                //.requestMatchers("/api/v1/user/**").hasAuthority("MANAGER")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->

@@ -1,10 +1,7 @@
 package com.example.ztpai.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
@@ -17,6 +14,8 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Table(name = "shifts")
 public class Shift {
     @Id
@@ -24,16 +23,24 @@ public class Shift {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @JdbcTypeCode(SqlTypes.CHAR)
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
-    private UUID id_shift;
+    private UUID idShift;
+
     @ManyToOne
-    @JoinColumn(name = "id_user")
+    @JoinColumn(name = "id_user", nullable = true)
     private User user;
-    @Column(name = "start_time")
-    private String start_time;
-    @Column(name = "end_time")
-    private String end_time;
-    @Column(name = "shift_date")
-    private Date shift_date;
+
+    @Column(name = "start_time", nullable = false)
+    private String startTime;
+
+    @Column(name = "end_time", nullable = false)
+    private String endTime;
+
+    @Column(name = "shift_date", nullable = false)
+    private Date shiftDate;
+
     @Enumerated(value = EnumType.STRING)
     private Place place;
+
+    @Transient
+    private String username;
 }

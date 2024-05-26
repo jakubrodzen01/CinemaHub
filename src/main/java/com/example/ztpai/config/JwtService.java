@@ -80,6 +80,6 @@ public class JwtService {
     public UUID getUserIdFromToken(String token) {
         String username = extractUsername(token);
         User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
-        return user.getId_user();
+        return user.getIdUser();
     }
 }

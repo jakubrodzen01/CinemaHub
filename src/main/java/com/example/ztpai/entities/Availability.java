@@ -24,7 +24,7 @@ public class Availability {
     private UUID id_availability;
 
     @ManyToOne
-    @JoinColumn(name = "id_user" , nullable = true)
+    @JoinColumn(name = "idUser" , nullable = true)
     private User user;
 
     @Column(name = "friday", nullable = true)

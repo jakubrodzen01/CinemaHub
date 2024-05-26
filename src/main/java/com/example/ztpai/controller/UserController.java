@@ -53,9 +53,8 @@ public class UserController {
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('MANAGER')")
     public void addUser(@RequestBody User user, HttpServletResponse response) throws IOException {
-        if(user.getFirst_name() != null && user.getLast_name() != null && user.getUsername() != null && user.getPassword() != null && user.getRole() != null) {
+        if(user.getFirstName() != null && user.getLastName() != null && user.getUsername() != null && user.getPassword() != null && user.getRole() != null) {
             userService.addUser(user);
-            //response.sendError(HttpServletResponse.SC_OK, "User added successfully!");
             return;
         }
         response.sendError(HttpServletResponse.SC_CONFLICT, "Missing required fields!");
@@ -66,7 +65,6 @@ public class UserController {
     public void deleteById(@PathVariable("uuid") UUID uuid, HttpServletResponse respponse) throws IOException {
         if(userService.getById(uuid) != null) {
             userService.deleteById(uuid);
-            //respponse.sendError(HttpServletResponse.SC_OK, "User deleted successfully!");
             return;
         }
         respponse.sendError(HttpServletResponse.SC_NOT_FOUND, "User not found!");

@@ -3,6 +3,7 @@ package com.example.ztpai.service;
 import com.example.ztpai.entities.*;
 import com.example.ztpai.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class UserService {
     }
 
     public User getById(UUID uuid) {
-        return userRepository.findById(uuid).orElse(null);
+        return userRepository.findById(uuid).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+    }
+
+    public User getByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
     }
 }

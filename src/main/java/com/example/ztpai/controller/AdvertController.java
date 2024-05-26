@@ -41,28 +41,27 @@ public class AdvertController {
     }
 
     @PostMapping("/add")
-    @PreAuthorize("hasAuthority('MANAGER'")
+    @PreAuthorize("hasAuthority('MANAGER')")
     public void addAdvert(@RequestBody Advert advert, @RequestHeader("Authorization") String authHeader, HttpServletResponse response) throws IOException {
+        System.out.println(advert.getTitle() + " " + advert.getText());
         if(advert.getTitle() != null && advert.getText() != null) {
             String token = authHeader.substring(7);
             UUID id_sender = jwtService.getUserIdFromToken(token);
             User sender = userService.getById(id_sender);
 
             advert.setUser(sender);
-            advert.setSend_date(new Date(System.currentTimeMillis()));
+            advert.setSendDate(new Date(System.currentTimeMillis()));
             advertService.addAdvert(advert);
-            //response.sendError(HttpServletResponse.SC_OK, "Advert added successfully!");
             return;
         }
         response.sendError(HttpServletResponse.SC_CONFLICT, "Missing required fields!");
     }
 
     @DeleteMapping("/delete/{uuid}")
-    @PreAuthorize("hasAuthority('MANAGER'")
+    @PreAuthorize("hasAuthority('MANAGER')")
     public void deleteById(@PathVariable("uuid") UUID uuid, HttpServletResponse response) throws IOException {
         if(advertService.getById(uuid) != null) {
             advertService.deleteById(uuid);
-            //response.sendError(HttpServletResponse.SC_OK, "Advert deleted successfully!");
             return;
         }
         response.sendError(HttpServletResponse.SC_NOT_FOUND, "Advert not found!");

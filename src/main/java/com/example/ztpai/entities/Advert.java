@@ -23,17 +23,17 @@ public class Advert {
     @GenericGenerator(name="UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @JdbcTypeCode(SqlTypes.CHAR)
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
-    private UUID id_advert;
+    private UUID idAdvert;
 
     @ManyToOne
-    @JoinColumn(name = "id_sender", nullable = true)
+    @JoinColumn(name = "idSender", nullable = true)
     private User user;
 
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "send_date", nullable = true)
-    private Date send_date;
+    @Column(name = "sendDate", nullable = true)
+    private Date sendDate;
 
     @Column(name = "text", nullable = false)
     private String text;
